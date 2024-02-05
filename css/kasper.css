@@ -201,10 +201,23 @@ header nav .form i {
 /* start landing */
 .landing {
   min-height: 100vh;
-  background-image: url("../images/landing.jpg");
   background-size: cover;
   background-color:rgb(39, 39, 39);
   position: relative;
+}
+.landing .slider-container{
+  position: relative;
+  height: 100vh;
+}
+.slider-container img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s;
+}
+.slider-container img.active {
+  opacity: 1;
 }
 .landing .overlay {
   width: 100%;
@@ -267,14 +280,14 @@ justify-content: flex-end;
   position: absolute;
   left: 30px;
 }
-.landing .bullets {
+.landing .sliding-bullets {
   position: absolute;
   left: 50%;
   bottom: 30px;
   transform: translateX(-50%);
   display: flex;
 }
-.landing .bullets li {
+.landing .sliding-bullets li {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -282,9 +295,13 @@ justify-content: flex-end;
   margin-right: 10px;
   cursor: pointer;
 }
-.landing .bullets li.active {
+.landing .sliding-bullets li.active {
   background-color: var(--main-color, #19c8fa);
   border: 1px solid var(--main-color, #19c8fa);
+}
+.slider-controlers .prev.disabled,
+.slider-controlers .next.disabled {
+    cursor: no-drop;
 }
 /* end landing */
 
@@ -407,6 +424,7 @@ justify-content: flex-end;
   display: flex;
   flex-wrap: wrap;
   margin-top: 60px;
+  padding:10px;
 }
 .portfolio .imgs-container .box {
   overflow: hidden;
