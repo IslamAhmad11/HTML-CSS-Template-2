@@ -6,7 +6,9 @@ let bullets = Array.from(document.querySelectorAll(".sliding-bullets li"));
 let lis = document.querySelectorAll(".shuffle li");
 let boxes = document.querySelectorAll(".imgs-container .box");
 let stats = document.querySelector(".stats");
-let statsNums = document.querySelectorAll(".stats .number")
+let statsNums = document.querySelectorAll(".stats .number");
+let skills = document.querySelector(".skills");
+let progressBars = document.querySelectorAll(".prog span");
 let currentSlide = 0;
 let started = false; // function not yet started
 
@@ -89,32 +91,37 @@ function removeActive() {
     const mediaQuery = window.matchMedia('(min-width: 768px)');
     // loop on matched boxes
     for(let i=0; i < matchedboxes.length; i++){
-        // Check if the media query is true
-        if (mediaQuery.matches) {
-            matchedboxes[i].style.display="block";
-        }
         // check the length of matched boxes
         if(matchedboxes.length == 2){
             matchedboxes[i].style.cssText = "left:25%";
         }else{
             matchedboxes[i].style.cssText = "left:0%";
         }
+        // Check if the media query is true
+        if (mediaQuery.matches) {
+            matchedboxes[i].style.display="block";
+        }else{
+            matchedboxes[i].style.cssText = "left:0%";
+        }
     }
 }
 
-// Animate width on scrolling
 window.onscroll = () => {
+    // Increase Numbers On Scrolling
     if(window.scrollY >= stats.offsetTop -300 && !started){
-        // progressBars.forEach((bar) => {
-        //     bar.style.width = bar.dataset.width;
-        // });
-            // Increase Numbers On Scrolling
-            statsNums.forEach((num) => {startCount(num)})
-            started = true
-    }
-};
+        statsNums.forEach((num) => {startCount(num)})
+        started = true
 
-// Increase Numbers On Scrolling
+}
+    // Animate bars width on scrolling
+    if(window.scrollY >= skills.offsetTop -300){
+        progressBars.forEach((bar) => {
+            bar.style.width = bar.dataset.width;
+        });
+    }
+}
+
+// Increase Numbers function
 function startCount (num) {
     let goal = num.dataset.goal;
     let count = setInterval(() => {

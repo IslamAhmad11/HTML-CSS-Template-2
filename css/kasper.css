@@ -693,9 +693,10 @@ cursor: pointer;
   height: 100%;
   position: relative;
   background-color: var(--main-color);
+  transition: width 0.3s linear;
 }
 .our-skills .prog-holder span::before {
-  content: attr(data-progress);
+  content: attr(data-width);
   position: absolute;
   top: -40px;
   right: -18px;
